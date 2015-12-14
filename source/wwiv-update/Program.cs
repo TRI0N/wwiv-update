@@ -122,6 +122,7 @@ namespace WWIVUpdate
 
                 // Launch Local BBS Node 1 with Networking
                 // TODO This Refuses to Load. Will Investigate.
+                // May look at ways to launch Local Node Via Telnet Server.
                 // Process.Start("bbs.exe -N1 -M");
                 // Process.Start("bbs.exe", "-N1 -M");
 
