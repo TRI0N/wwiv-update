@@ -1,2 +1,2 @@
 # wwiv-update
-Autmated Update Program for WWIV5
+Automated Update Program for WWIV5
