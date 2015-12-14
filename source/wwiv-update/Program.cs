@@ -22,7 +22,7 @@ namespace WWIVUpdate
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Clear();
                 string buildNumber = mTitle.Groups[1].Value;
-                Console.WriteLine("WWIV UPDATE v0.7 | ßeta");
+                Console.WriteLine("WWIV UPDATE v0.8 | ßeta");
                 Console.WriteLine(" ");
                 Console.WriteLine("WARNING! WWIV5TelNet, WWIV and WWIVnet MUST Be Closed Before Proceeding.");
                 Console.WriteLine(" ");
@@ -87,6 +87,7 @@ namespace WWIVUpdate
                 Console.WriteLine("Successfully Downloaded File \"{0}\" from \"{1}\"", fileName, myStringWebResource);
                 Console.WriteLine(" ");
                 Console.WriteLine("Fetch Update Complete | Press Any Key to Update WWIV...");
+                Console.WriteLine(" ");
                 Console.ReadKey();
 
                 // Patch Existing WWIV Install
