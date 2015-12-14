@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
-using System.Windows.Forms;
 using System.Diagnostics;
 
 namespace WWIVUpdate
