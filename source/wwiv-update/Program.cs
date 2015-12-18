@@ -4,6 +4,8 @@ using System.IO;
 using System.IO.Compression;
 using System.Net;
 using System.Diagnostics;
+using System.Security.Permissions;
+using System.Security;
 
 namespace WWIVUpdate
 {
@@ -22,7 +24,8 @@ namespace WWIVUpdate
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Clear();
                 string buildNumber = mTitle.Groups[1].Value;
-                Console.WriteLine("WWIV UPDATE v0.8 | ßeta");
+                Console.WriteLine(" ");
+                Console.WriteLine("WWIV UPDATE v0.9 | ßeta");
                 Console.WriteLine(" ");
                 Console.WriteLine("WARNING! WWIV5TelNet, WWIV and WWIVnet MUST Be Closed Before Proceeding.");
                 Console.WriteLine(" ");
@@ -34,6 +37,66 @@ namespace WWIVUpdate
                 Console.Write("Enter Build Number or Press Enter To Use Latest: ");
                 string useBuild = Console.ReadLine();
                 Console.Clear();
+
+                // Check for Running Instances of WWIV Programs
+                // bbs.exe
+                if (Process.GetProcessesByName("bbs").Length >= 1)
+                {
+                    Console.WriteLine(" ");
+                    Console.WriteLine("WWIV BBS.EXE is Currently Running! Please Close and Try Again.");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Press Any Key To Restart WWIV Update...");
+                    Console.ReadKey();
+                    Main(args);
+                }
+                // WWIV5TelnetServer.exe
+                if (Process.GetProcessesByName("WWIV5TelnetServer").Length >= 1)
+                {
+                    Console.WriteLine(" ");
+                    Console.WriteLine("WWIV5TelnetServer is Currently Running! Please Close and Try Again.");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Press Any Key To Restart WWIV Update...");
+                    Console.ReadKey();
+                    Main(args);
+                }
+                // binkp networkb.exe
+                if (Process.GetProcessesByName("networkb").Length >= 1)
+                {
+                    Console.WriteLine(" ");
+                    Console.WriteLine("WWIV BINKP.CMD is Currently Running! Please Close and Try Again.");
+                    Console.WriteLine(" ");
+                    Console.WriteLine("Press Any Key To Restart WWIV Update...");
+                    Console.ReadKey();
+                    Main(args);
+                }
+
+                // Search For bbs.exe In Default Install Path
+
+                Console.WriteLine(" ");
+                Console.WriteLine("Searching for WWIV Working Directory...");
+                Console.WriteLine(" ");
+                string[] files = Directory.GetFiles(@"C:\wwiv", "bbs.exe", SearchOption.AllDirectories);
+                foreach (string file in files)
+                {
+                    if (File.Exists(file))
+                    {
+                        Console.WriteLine(file + "  Was Located In The Default WWIV Install Directory");
+                        Console.WriteLine(" ");
+                    }
+                    else
+                    {
+                        Console.WriteLine(@"WWIV Is Not Installed In The Default Directory of C:\wwiv");
+                        Console.WriteLine(" ");
+                        Console.WriteLine("WWIV Update Cannot Proceed!");
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Please Manually Update Your WWIV Install.");
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Press Any Key To Exit WWIV Update.");
+                        Console.ReadKey();
+                        Environment.Exit(2);
+                    }
+                }
+                Console.ReadKey();
 
                 // Set Global Strings For Update
                 string backupPath = @"C:\wwiv";
