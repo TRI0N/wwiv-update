@@ -27,7 +27,7 @@ namespace WWIVUpdate
                 Console.WriteLine(" ");
                 Console.WriteLine("WWIV UPDATE v0.9 | ßeta");
                 Console.WriteLine(" ");
-                Console.WriteLine("WARNING! WWIV5TelNet, WWIV and WWIVnet MUST Be Closed Before Proceeding.");
+                Console.WriteLine("WARNING! WWIV5Telnet, WWIV and WWIVnet MUST Be Closed Before Proceeding.");
                 Console.WriteLine(" ");
                 Console.WriteLine(" ");
                 Console.WriteLine("Latest Successful Build Number: " + buildNumber);
@@ -71,7 +71,6 @@ namespace WWIVUpdate
                 }
 
                 // Search For bbs.exe In Default Install Path
-
                 Console.WriteLine(" ");
                 Console.WriteLine("Searching for WWIV Working Directory...");
                 Console.WriteLine(" ");
