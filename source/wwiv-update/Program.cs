@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.IO.Compression;
@@ -17,6 +17,7 @@ namespace WWIVUpdate
             WebClient wc = new WebClient();
             string htmlString1 = wc.DownloadString("http://build.wwivbbs.org/jenkins/job/wwiv/lastSuccessfulBuild/label=windows/");
             Match mTitle1 = Regex.Match(htmlString1, "(?:number.*?>)(?<buildNumber1>.*?)(?:<)");
+            // Fetch Latest Build Number For WWIV 5.0
             string htmlString2 = wc.DownloadString("https://build.wwivbbs.org/jenkins/job/wwiv_5.0.0/lastSuccessfulBuild/label=windows/");
             Match mTitle2 = Regex.Match(htmlString2, "(?:number.*?>)(?<buildNumber2>.*?)(?:<)");
             if (mTitle1.Success)
@@ -28,9 +29,9 @@ namespace WWIVUpdate
                 string buildNumber1 = mTitle1.Groups[1].Value;
                 string buildNumber2 = mTitle2.Groups[1].Value;
                 Console.WriteLine(" ");
-                Console.WriteLine("WWIV UPDATE v0.9.1 | ßeta");
+                Console.WriteLine("WWIV UPDATE v0.9.2 | ßeta");
                 Console.WriteLine(" ");
-                Console.WriteLine("WARNING! WWIV5Telnet, WWIV and WWIVnet MUST Be Closed Before Proceeding.");
+                Console.WriteLine("WARNING! WWIV5TelNet, WWIV and WWIVnet MUST Be Closed Before Proceeding.");
                 Console.WriteLine(" ");
                 Console.WriteLine(" ");
                 Console.WriteLine("WWIV 5.1 Latest Successful Build Number: " + buildNumber1);
@@ -76,11 +77,7 @@ namespace WWIVUpdate
                 }
 
                 // Search For bbs.exe In Default Install Path
-<<<<<<< HEAD
                 Console.WriteLine(" ");
-=======
-                /*Console.WriteLine(" ");
->>>>>>> Beta
                 Console.WriteLine("Searching for WWIV Working Directory...");
                 Console.WriteLine(" ");
                 string[] files = Directory.GetFiles(@"C:\wwiv", "bbs.exe", SearchOption.AllDirectories);
@@ -104,7 +101,7 @@ namespace WWIVUpdate
                         Environment.Exit(2);
                     }
                 }
-                Console.ReadKey();*/
+                //Console.ReadKey();
 
                 // Set Global Strings For Update
                 string backupPath = @"C:\wwiv";
