@@ -13,28 +13,33 @@ namespace WWIVUpdate
     {
         static void Main(string[] args)
         {
-            // Fetch Latest Build Number
+            // Fetch Latest Build Number For WWIV 5.1
             WebClient wc = new WebClient();
-            string htmlString = wc.DownloadString("http://build.wwivbbs.org/jenkins/job/wwiv/lastSuccessfulBuild/label=windows/");
-            Match mTitle = Regex.Match(htmlString, "(?:number.*?>)(?<buildNumber>.*?)(?:<)");
-            if (mTitle.Success)
+            string htmlString1 = wc.DownloadString("http://build.wwivbbs.org/jenkins/job/wwiv/lastSuccessfulBuild/label=windows/");
+            Match mTitle1 = Regex.Match(htmlString1, "(?:number.*?>)(?<buildNumber1>.*?)(?:<)");
+            string htmlString2 = wc.DownloadString("https://build.wwivbbs.org/jenkins/job/wwiv_5.0.0/lastSuccessfulBuild/label=windows/");
+            Match mTitle2 = Regex.Match(htmlString2, "(?:number.*?>)(?<buildNumber2>.*?)(?:<)");
+            if (mTitle1.Success)
             {
                 // Console Input or Update
                 Console.BackgroundColor = ConsoleColor.DarkRed;
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Clear();
-                string buildNumber = mTitle.Groups[1].Value;
+                string buildNumber1 = mTitle1.Groups[1].Value;
+                string buildNumber2 = mTitle2.Groups[1].Value;
                 Console.WriteLine(" ");
-                Console.WriteLine("WWIV UPDATE v0.9 | ßeta");
+                Console.WriteLine("WWIV UPDATE v0.9.1 | ßeta");
                 Console.WriteLine(" ");
                 Console.WriteLine("WARNING! WWIV5Telnet, WWIV and WWIVnet MUST Be Closed Before Proceeding.");
                 Console.WriteLine(" ");
                 Console.WriteLine(" ");
-                Console.WriteLine("Latest Successful Build Number: " + buildNumber);
+                Console.WriteLine("WWIV 5.1 Latest Successful Build Number: " + buildNumber1);
+                Console.WriteLine(" ");
+                Console.WriteLine("WWIV 5.0 Latest Successful Build Number: " + buildNumber2);
                 Console.WriteLine(" ");
                 Console.WriteLine(" ");
                 Console.WriteLine(" ");
-                Console.Write("Enter Build Number or Press Enter To Use Latest: ");
+                Console.Write("Enter Build Number or Press Enter To Use Latest 5.1: ");
                 string useBuild = Console.ReadLine();
                 Console.Clear();
 
@@ -63,7 +68,7 @@ namespace WWIVUpdate
                 if (Process.GetProcessesByName("networkb").Length >= 1)
                 {
                     Console.WriteLine(" ");
-                    Console.WriteLine("WWIV BINKP.CMD is Currently Running! Please Close and Try Again.");
+                    Console.WriteLine("WWIV BINKP.CMD (WWIVnet) is Currently Running! Please Close and Try Again.");
                     Console.WriteLine(" ");
                     Console.WriteLine("Press Any Key To Restart WWIV Update...");
                     Console.ReadKey();
@@ -71,7 +76,11 @@ namespace WWIVUpdate
                 }
 
                 // Search For bbs.exe In Default Install Path
+<<<<<<< HEAD
                 Console.WriteLine(" ");
+=======
+                /*Console.WriteLine(" ");
+>>>>>>> Beta
                 Console.WriteLine("Searching for WWIV Working Directory...");
                 Console.WriteLine(" ");
                 string[] files = Directory.GetFiles(@"C:\wwiv", "bbs.exe", SearchOption.AllDirectories);
@@ -95,46 +104,46 @@ namespace WWIVUpdate
                         Environment.Exit(2);
                     }
                 }
-                Console.ReadKey();
+                Console.ReadKey();*/
 
                 // Set Global Strings For Update
                 string backupPath = @"C:\wwiv";
                 string zipPath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Documents\" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_wwiv-backup.zip";
                 string extractPath = @"C:\wwiv";
                 string extractPath2 = Environment.GetEnvironmentVariable("SystemRoot") + @"\System32";
-                string buildNumber2;
+                string buildNumber3;
                 {
                      if (useBuild == null || string.IsNullOrWhiteSpace(useBuild))
                      {
-                         buildNumber2 = buildNumber;
+                         buildNumber3 = buildNumber1;
                     }
                      else
                      {
-                        buildNumber2 = useBuild;
+                        buildNumber3 = useBuild;
                     }
                 }
                 string remoteUri;
                 {
-                    if (buildNumber2 == buildNumber)
+                    if (buildNumber3 == buildNumber1)
                     {
                         remoteUri = "http://build.wwivbbs.org/jenkins/job/wwiv/lastSuccessfulBuild/label=windows/artifact/";
                     }
                     else
                     {
-                        remoteUri = "http://build.wwivbbs.org/jenkins/job/wwiv/" + buildNumber2 + "/label=windows/artifact/";
+                        remoteUri = "http://build.wwivbbs.org/jenkins/job/wwiv/" + buildNumber3 + "/label=windows/artifact/";
                     }
                 }
-                string fileName = "wwiv-build-win-" + buildNumber2 + ".zip", myStringWebResource = null;
-                string updatePath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Downloads\wwiv-build-win-" + buildNumber2 + ".zip";
+                string fileName = "wwiv-build-win-" + buildNumber3 + ".zip", myStringWebResource = null;
+                string updatePath = Environment.GetEnvironmentVariable("USERPROFILE") + @"\Downloads\wwiv-build-win-" + buildNumber3 + ".zip";
                 string wwivChanges;
                 {
-                    if (buildNumber2 == buildNumber)
+                    if (buildNumber3 == buildNumber1)
                     {
                         wwivChanges = "http://build.wwivbbs.org/jenkins/job/wwiv/lastSuccessfulBuild/label=windows/changes";
                     }
                     else
                     {
-                        wwivChanges = "http://build.wwivbbs.org/jenkins/job/wwiv/" + buildNumber2 + "/label=windows/changes";
+                        wwivChanges = "http://build.wwivbbs.org/jenkins/job/wwiv/" + buildNumber3 + "/label=windows/changes";
                     }
                 }
 
