@@ -13,4 +13,4 @@ Furthermore this Execute is not Directory Dependent. You can run it from any dir
 <br>
 What's Next? I will be making this into a Windows Based Application and not using Console. This will help with a few security issues that are in conflict with the Console Version.<br>
 <br>
-NOTICE! This Program Required Administrative Access for the Following: The Ability to write the required .dll to System32 and to seek the install directory of your BSS. It DOES NOT MODIFY any other system dependent configurations.
+NOTICE! This Program Requires Administrative Access for the Following: The Ability to write the required .dll to System32 and to seek the install directory of your BSS. It DOES NOT MODIFY any other system dependent configurations.
