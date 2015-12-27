@@ -31,12 +31,12 @@ namespace WWIVUpdate
             Match mTitle2 = Regex.Match(htmlString2, "(?:number.*?>)(?<buildNumber2>.*?)(?:<)");
             if (mTitle1.Success)
             {
-                // Initialze Build Numbers
+                // Initialze Build Numbers from Jenkins
                 wwivBuild5_0 = mTitle2.Groups[1].Value;
                 wwivBuild5_1 = mTitle1.Groups[1].Value;
             }
             Console.WriteLine(" ");
-            Console.WriteLine("WWIV UPDATE v0.9.3 | ßeta");
+            Console.WriteLine("WWIV UPDATE v0.9.4 | ßeta");
             Console.WriteLine(" ");
             Console.WriteLine("WARNING! WWIV5TelNet, WWIV and WWIVnet MUST Be Closed Before Proceeding.");
             Console.WriteLine(" ");
@@ -108,7 +108,6 @@ namespace WWIVUpdate
                     Environment.Exit(2);
                 }
             }
-            //Console.ReadKey();
 
             // Set Global Strings For Update
             string backupPath = @"C:\wwiv";
@@ -155,7 +154,7 @@ namespace WWIVUpdate
             Console.WriteLine("Back Up WWIV Started...");
             Console.WriteLine(" ");
             ZipFile.CreateFromDirectory(backupPath, zipPath);
-            Console.WriteLine(@"Successfully Backed Up WWIV to " + backupPath + "!");
+            Console.WriteLine(@"Successfully Backed Up WWIV to " + zipPath + "!");
             Console.WriteLine(" ");
 
             // Fetch Latest Sucessful Build
